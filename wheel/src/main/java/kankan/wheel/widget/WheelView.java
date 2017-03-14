@@ -379,8 +379,9 @@ public class WheelView extends View {
 				currentItem = index;
 
 				notifyChangingListeners(old, currentItem);
-
-				invalidate();
+				// FIXME: 2016/5/11 使WheelView作废重新配置TextView, 只invalidate不会重新调Adapter.getView
+				invalidateWheel(false);
+//				invalidate();
 			}
 		}
 	}
@@ -869,9 +870,11 @@ public class WheelView extends View {
 
 		// add views
 		// all items must be included to measure width correctly
-		for (int i = viewAdapter.getItemsCount()-1; i >= 0; i--){
-			if (addViewItem(i, true)) {
-				firstItem = i;
+		if(viewAdapter != null) {
+			for (int i = viewAdapter.getItemsCount()-1; i >= 0; i--){
+				if (addViewItem(i, true)) {
+					firstItem = i;
+				}
 			}
 		}
 	}

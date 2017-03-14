@@ -192,10 +192,10 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
                     text = "";
                 }
                 textView.setText(text);
-    
-                if (itemResourceId == TEXT_VIEW_ITEM_RESOURCE) {
+                // FIXME: 2016/5/11 	配置TextView属性的回调
+//                if (itemResourceId == TEXT_VIEW_ITEM_RESOURCE) {
                     configureTextView(textView);
-                }
+//                }
             }
             return convertView;
         }
